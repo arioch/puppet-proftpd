@@ -6,6 +6,7 @@ class proftpd::params {
     'RedHat', 'CentOS': {
       $config_dir        = ''
       $config_group      = 'root'
+      $config_dir_mode   = '0755'
       $config_mode       = '0644'
       $config_user       = 'root'
       $daemon_group      = ''
@@ -21,9 +22,10 @@ class proftpd::params {
     }
 
     'Debian', 'Ubuntu': {
-      $config_dir        = ''
+      $config_dir        = '/etc/proftpd'
+      $config_dir_mode   = '0755'
+      $config_file_mode  = '0644'
       $config_group      = 'root'
-      $config_mode       = '0644'
       $config_user       = 'root'
       $daemon_group      = ''
       $daemon_user       = ''

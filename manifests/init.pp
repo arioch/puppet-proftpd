@@ -2,8 +2,9 @@
 #
 class proftpd (
   config_dir        = $::proftpd::params::config_dir,
+  config_dir_mode   = $::proftpd::params::config_dir_mode,
+  config_file_mode  = $::proftpd::params::config_file_mode,
   config_group      = $::proftpd::params::config_group,
-  config_mode       = $::proftpd::params::config_mode,
   config_user       = $::proftpd::params::config_user,
   daemon_group      = $::proftpd::params::daemon_group,
   daemon_user       = $::proftpd::params::daemon_user,

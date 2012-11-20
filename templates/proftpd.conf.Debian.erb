@@ -1,0 +1,176 @@
+#
+# <%= scope.lookupvar('proftpd::config_dir') %>/proftpd.conf -- This is a basic ProFTPD configuration file.
+# To really apply changes reload proftpd after modifications.
+# 
+
+# Includes DSO modules
+Include <%= scope.lookupvar('proftpd::config_dir') %>/modules.conf
+
+# Set off to disable IPv6 support which is annoying on IPv4 only boxes.
+UseIPv6 <%= scope.lookupvar('proftpd::use_ipv6') %>
+# If set on you can experience a longer connection delay in many cases.
+IdentLookups <%= scope.lookupvar('proftpd::identlookups') %>
+
+ServerName   "<%= scope.lookupvar('proftpd::servername') %>"
+ServerType   <%= scope.lookupvar('proftpd::servertype') %>
+DeferWelcome <%= scope.lookupvar('proftpd::deferwelcome') %>
+
+MultilineRFC2228 <%= scope.lookupvar('proftpd::multilinerfc2228') %>
+DefaultServer    <%= scope.lookupvar('proftpd::defaultserver') %>
+ShowSymlinks     <%= scope.lookupvar('proftpd::showsymlinks') %>
+
+TimeoutNoTransfer <%= scope.lookupvar('proftpd::timeoutnotransfer') %>
+TimeoutStalled    <%= scope.lookupvar('proftpd::timeoutstalled') %>
+TimeoutIdle       <%= scope.lookupvar('proftpd::timeoutidle') %>
+
+DisplayLogin <%= scope.lookupvar('proftpd::displaylogin') %>
+DisplayChdir <%= scope.lookupvar('proftpd::displaychdir') %>
+ListOptions  "<%= scope.lookupvar('proftpd::listoptions') %>"
+
+DenyFilter <%= scope.lookupvar('proftpd::denyfilter') %>
+
+# Use this to jail all users in their homes 
+DefaultRoot <%= scope.lookupvar('proftpd::defaultroot') %>
+
+# Users require a valid shell listed in /etc/shells to login.
+# Use this directive to release that constrain.
+RequireValidShell <%= scope.lookupvar('proftpd::requirevalidshell') %>
+
+# Port 21 is the standard FTP port.
+Port <%= scope.lookupvar('proftpd::listen_port') %>
+
+# In some cases you have to specify passive ports range to by-pass
+# firewall limitations. Ephemeral ports can be used for that, but
+# feel free to use a more narrow range.
+# PassivePorts                  49152 65534
+
+# If your host was NATted, this option is useful in order to
+# allow passive tranfers to work. You have to use your public
+# address and opening the passive ports used on your firewall as well.
+# MasqueradeAddress   1.2.3.4
+
+# This is useful for masquerading address with dynamic IPs:
+# refresh any configured MasqueradeAddress directives every 8 hours
+<IfModule mod_dynmasq.c>
+# DynMasqRefresh 28800
+</IfModule>
+
+# To prevent DoS attacks, set the maximum number of child processes
+# to 30.  If you need to allow more than 30 concurrent connections
+# at once, simply increase this value.  Note that this ONLY works
+# in standalone mode, in inetd mode you should use an inetd server
+# that allows you to limit maximum number of processes per service
+# (such as xinetd)
+MaxInstances <%= scope.lookupvar('proftpd::maxinstances') %>
+
+# Set the user and group that the server normally runs at.
+User  <%= scope.lookupvar('proftpd::daemon_user') %>
+Group <%= scope.lookupvar('proftpd::daemon_group') %>
+
+# Umask 022 is a good standard umask to prevent new files and dirs
+# (second parm) from being group and world writable.
+Umask       022  022
+# Normally, we want files to be overwriteable.
+AllowOverwrite <%= scope.lookupvar('proftpd::allowoverwrite') %>
+
+# Uncomment this if you are using NIS or LDAP via NSS to retrieve passwords:
+PersistentPasswd <%= scope.lookupvar('proftpd::persistentpasswd') %>
+
+# This is required to use both PAM-based authentication and local passwords
+# AuthOrder     mod_auth_pam.c* mod_auth_unix.c
+
+# Be warned: use of this directive impacts CPU average load!
+# Uncomment this if you like to see progress and transfer rate with ftpwho
+# in downloads. That is not needed for uploads rates.
+#
+UseSendFile <%= scope.lookupvar('proftpd::usesendfile') %>
+
+TransferLog <%= scope.lookupvar('proftpd::log_dir') %>/xferlog
+SystemLog   <%= scope.lookupvar('proftpd::log_dir') %>/proftpd.log
+
+<IfModule mod_quotatab.c>
+QuotaEngine <%= scope.lookupvar('proftpd::quotaengine') %>
+</IfModule>
+
+<IfModule mod_ratio.c>
+Ratios <%= scope.lookupvar('proftpd::ratios') %>
+</IfModule>
+
+
+# Delay engine reduces impact of the so-called Timing Attack described in
+# http://security.lss.hr/index.php?page=details&ID=LSS-2004-10-02
+# It is on by default. 
+<IfModule mod_delay.c>
+DelayEngine <%= scope.lookupvar('proftpd::delayengine') %>
+</IfModule>
+
+<IfModule mod_ctrls.c>
+ControlsEngine     <%= scope.lookupvar('proftpd::controlsengine') %> 
+ControlsMaxClients <%= scope.lookupvar('proftpd::controlsmaxclients') %> 
+ControlsLog        <%= scope.lookupvar('proftpd::log_dir') %>/controls.log
+ControlsInterval   <%= scope.lookupvar('proftpd::controlsinterval') %> 
+ControlsSocket     <%= scope.lookupvar('proftpd::controlssocket') %> 
+</IfModule>
+
+<IfModule mod_ctrls_admin.c>
+AdminControlsEngine <%= scope.lookupvar('proftpd::admincontrolsengine') %> 
+</IfModule>
+
+#
+# Alternative authentication frameworks
+#
+#Include <%= scope.lookupvar('proftpd::config_dir') %>/ldap.conf
+#Include <%= scope.lookupvar('proftpd::config_dir') %>/sql.conf
+
+#
+# This is used for FTPS connections
+#
+#Include <%= scope.lookupvar('proftpd::config_dir') %>/tls.conf
+
+#
+# Useful to keep VirtualHost/VirtualRoot directives separated
+#
+#Include <%= scope.lookupvar('proftpd::config_dir') %>/virtuals.conf
+
+# A basic anonymous configuration, no upload directories.
+
+# <Anonymous ~ftp>
+#   User        ftp
+#   Group       nogroup
+#   # We want clients to be able to login with "anonymous" as well as "ftp"
+#   UserAlias     anonymous ftp
+#   # Cosmetic changes, all files belongs to ftp user
+#   DirFakeUser on ftp
+#   DirFakeGroup on ftp
+# 
+#   RequireValidShell   off
+# 
+#   # Limit the maximum number of anonymous logins
+#   MaxClients      10
+# 
+#   # We want 'welcome.msg' displayed at login, and '.message' displayed
+#   # in each newly chdired directory.
+#   DisplayLogin      welcome.msg
+#   DisplayChdir    .message
+# 
+#   # Limit WRITE everywhere in the anonymous chroot
+#   <Directory *>
+#     <Limit WRITE>
+#       DenyAll
+#     </Limit>
+#   </Directory>
+# 
+#   # Uncomment this if you're brave.
+#   # <Directory incoming>
+#   #   # Umask 022 is a good standard umask to prevent new files and dirs
+#   #   # (second parm) from being group and world writable.
+#   #   Umask       022  022
+#   #            <Limit READ WRITE>
+#   #            DenyAll
+#   #            </Limit>
+#   #            <Limit STOR>
+#   #            AllowAll
+#   #            </Limit>
+#   # </Directory>
+# 
+# </Anonymous>

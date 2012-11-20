@@ -90,7 +90,7 @@ class proftpd::params {
       $log_dir           = '/var/log/proftpd'
       $pid_file          = '/var/run/proftpd.pid'
       $pkg_ensure        = present
-      $pkg_list          = 'proftpd'
+      $pkg_list          = 'proftpd-basic'
       $service_enable    = true
       $service_ensure    = running
       $service_hasstatus = true

@@ -34,6 +34,32 @@ class proftpd::params {
   $controlssocket      = '/var/run/proftpd/proftpd.sock'
   $admincontrolsengine = 'off'
 
+  $load_modules = [
+    'mod_ban.c',
+    'mod_ctrls_admin.c',
+    'mod_dynmasq.c',
+    'mod_exec.c',
+    'mod_facl.c',
+    'mod_load.c',
+    'mod_quotatab.c',
+    'mod_quotatab_file.c',
+    'mod_quotatab_radius.c',
+    'mod_radius.c',
+    'mod_ratio.c',
+    'mod_rewrite.c',
+    'mod_sftp.c',
+    'mod_sftp_pam.c',
+    'mod_shaper.c',
+    'mod_site_misc.c',
+    'mod_tls.c',
+    'mod_unique_id.c',
+    'mod_vroot.c',
+    'mod_wrap.c',
+    'mod_wrap2.c',
+    'mod_wrap2_file.c',
+    'mod_ifsession.c'
+  ]
+
   case $::operatingsystem {
     'RedHat', 'CentOS': {
       $config_dir        = ''

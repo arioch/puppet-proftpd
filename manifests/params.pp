@@ -3,7 +3,7 @@
 class proftpd::params {
 
   # proftpd.conf
-  $use_ipv6            = 'on'
+  $use_ipv6            = 'off'
   $identlookups        = 'off'
   $servername          = $::fqdn
   $servertype          = 'standalone'

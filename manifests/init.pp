@@ -27,8 +27,8 @@ class proftpd (
   Class['proftpd::config'] ->
   Class['proftpd::service']
 
-  if $load_modules {
-    proftpd::mod { $load_modules:; }
+  if $::proftpd::load_modules {
+    proftpd::mod { $::proftpd::load_modules:; }
   }
 
 }

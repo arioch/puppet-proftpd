@@ -22,18 +22,8 @@ class proftpd::config {
     "${::proftpd::config_dir}/modules.conf":
       content => template("proftpd/${::osfamily}/modules.conf.erb");
 
-    "${::proftpd::config_dir}/sql.conf":
-      content => template("proftpd/${::osfamily}/sql.conf.erb");
-
-    "${::proftpd::config_dir}/tls.conf":
-      content => template("proftpd/${::osfamily}/tls.conf.erb");
-
     "${::proftpd::config_dir}/virtuals.conf":
       content => template("proftpd/${::osfamily}/virtuals.conf.erb");
-
-    "${::proftpd::config_dir}/ldap.conf":
-      content => template("proftpd/${::osfamily}/ldap.conf.erb");
-
   }
 
 }

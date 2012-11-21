@@ -62,6 +62,6 @@ ModuleControlsACLs lsmod allow user *
 
 # keep the mod_ifsession.c module the last one
 
-<% load_modules.each do |mod| %>LoadModule <%= mod %>
+<% load_modules.each do |mod| %>LoadModule mod_<%= mod %>.c
 <% end %>
 

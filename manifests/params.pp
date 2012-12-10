@@ -53,7 +53,6 @@ class proftpd::params {
     'site_misc',
     'tls',
     'unique_id',
-    'vroot',
     'wrap',
     'wrap2',
     'wrap2_file',

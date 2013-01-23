@@ -25,6 +25,5 @@ class proftpd::config {
     "${::proftpd::config_dir}/virtuals.conf":
       content => template("proftpd/${::osfamily}/virtuals.conf.erb");
   }
-
 }
 

@@ -30,6 +30,5 @@ class proftpd (
   if $::proftpd::load_modules {
     proftpd::mod { $::proftpd::load_modules:; }
   }
-
 }
 

@@ -1,7 +1,6 @@
 # = Class proftpd::params
 #
 class proftpd::params {
-
   # proftpd.conf
   $use_ipv6            = 'off'
   $identlookups        = 'off'
@@ -100,6 +99,5 @@ class proftpd::params {
       fail "Operating system ${::operatingsystem} is not supported yet."
     }
   }
-
 }
 

@@ -1,4 +1,4 @@
-# = Class proftpd::mod::ban
+# == Class proftpd::mod::ban
 #
 class proftpd::mod::ban ($enable = true) {
   if $enable == true {

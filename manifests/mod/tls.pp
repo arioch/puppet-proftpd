@@ -1,4 +1,4 @@
-# = Class proftpd::mod::tls
+# == Class proftpd::mod::tls
 #
 class proftpd::mod::tls ($enable = true) {
   file { "${::proftpd::config_dir}/tls.conf":

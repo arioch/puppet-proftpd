@@ -1,4 +1,4 @@
-# = Class proftpd
+# == Class proftpd
 #
 class proftpd::service {
   service { $::proftpd::service_name:

@@ -1,4 +1,4 @@
-# = Class proftpd::install
+# == Class proftpd::install
 #
 class proftpd::install {
   package { $::proftpd::pkg_list:

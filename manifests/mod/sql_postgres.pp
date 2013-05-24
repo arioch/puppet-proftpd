@@ -1,4 +1,4 @@
-# = Class proftpd::mod::sql_postgres
+# == Class proftpd::mod::sql_postgres
 #
 class proftpd::mod::sql_postgres ($enable = true) {
   file { "${::proftpd::config_dir}/sql.conf":

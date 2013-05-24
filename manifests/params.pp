@@ -1,4 +1,4 @@
-# = Class proftpd::params
+# == Class proftpd::params
 #
 class proftpd::params {
   # proftpd.conf

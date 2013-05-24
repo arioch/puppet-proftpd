@@ -1,4 +1,4 @@
-# = Define: proftpd::mod
+# == Define: proftpd::mod
 #
 define proftpd::mod ($enable = true) {
   if defined ("proftpd::mod::${name}") {

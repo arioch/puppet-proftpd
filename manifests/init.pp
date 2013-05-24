@@ -77,7 +77,7 @@ class proftpd (
   class { 'proftpd::service': }
 
   if $::proftpd::load_modules {
-    create_resources(proftpd::mod, $load_modules)
+    create_resources(proftpd::mod, $load_modules, {})
   }
 }
 

@@ -5,13 +5,15 @@ class proftpd::config {
     ensure  => present,
     require => Class['::proftpd::install'],
     notify  => Service[$::proftpd::service_name],
+    mode    => $::proftpd::config_file_mode,
     owner   => $::proftpd::config_user,
     group   => $::proftpd::config_group,
   }
 
   file {
     $::proftpd::config_dir:
-      ensure => directory;
+      ensure => directory,
+      mode   => $::proftpd::config_dir_mode;
 
     $::proftpd::log_dir:
       ensure => directory;

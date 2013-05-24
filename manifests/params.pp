@@ -104,39 +104,41 @@ class proftpd::params {
 
   case $::operatingsystem {
     'RedHat', 'CentOS': {
-      $config_dir        = ''
-      $config_group      = 'root'
-      $config_dir_mode   = '0755'
-      $config_mode       = '0644'
-      $config_user       = 'root'
-      $daemon_group      = ''
-      $daemon_user       = ''
-      $log_dir           = ''
-      $pid_file          = ''
-      $pkg_ensure        = present
-      $pkg_list          = ''
-      $service_enable    = true
-      $service_ensure    = running
-      $service_hasstatus = ''
-      $service_name      = ''
+      $config_dir         = ''
+      $config_dir_mode    = '0755'
+      $config_group       = 'root'
+      $config_mode        = '0644'
+      $config_user        = 'root'
+      $daemon_group       = undef
+      $daemon_user        = undef
+      $log_dir            = undef
+      $pid_file           = undef
+      $pkg_ensure         = present
+      $pkg_list           = undef
+      $service_enable     = true
+      $service_ensure     = running
+      $service_hasrestart = undef
+      $service_hasstatus  = undef
+      $service_name       = undef
     }
 
     'Debian', 'Ubuntu': {
-      $config_dir        = '/etc/proftpd'
-      $config_dir_mode   = '0755'
-      $config_file_mode  = '0644'
-      $config_group      = 'root'
-      $config_user       = 'root'
-      $daemon_group      = 'nogroup'
-      $daemon_user       = 'proftpd'
-      $log_dir           = '/var/log/proftpd'
-      $pid_file          = '/var/run/proftpd.pid'
-      $pkg_ensure        = present
-      $pkg_list          = 'proftpd-basic'
-      $service_enable    = true
-      $service_ensure    = running
-      $service_hasstatus = true
-      $service_name      = 'proftpd'
+      $config_dir         = '/etc/proftpd'
+      $config_dir_mode    = '0755'
+      $config_file_mode   = '0644'
+      $config_group       = 'root'
+      $config_user        = 'root'
+      $daemon_group       = 'nogroup'
+      $daemon_user        = 'proftpd'
+      $log_dir            = '/var/log/proftpd'
+      $pid_file           = '/var/run/proftpd.pid'
+      $pkg_ensure         = present
+      $pkg_list           = 'proftpd-basic'
+      $service_enable     = true
+      $service_ensure     = running
+      $service_hasrestart = true
+      $service_hasstatus  = true
+      $service_name       = 'proftpd'
     }
 
     default: {

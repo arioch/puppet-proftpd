@@ -19,13 +19,10 @@ class proftpd (
   $service_hasstatus = $::proftpd::params::service_hasstatus,
   $service_name      = $::proftpd::params::service_name,
 ) inherits proftpd::params {
-  include proftpd::install
-  include proftpd::config
-  include proftpd::service
-
-  Class['proftpd::install'] ->
-  Class['proftpd::config'] ->
-  Class['proftpd::service']
+  class { 'proftpd::install': } ->
+  class { 'proftpd::config': } ->
+  class { 'proftpd::service': } ->
+  Class [ 'proftpd' ]
 
   if $::proftpd::load_modules {
     proftpd::mod { $::proftpd::load_modules:; }

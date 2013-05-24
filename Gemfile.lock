@@ -53,5 +53,6 @@ DEPENDENCIES
   puppet-lint (>= 0.3.2)
   puppetlabs_spec_helper (>= 0.3.0)
   rake
+  rspec
   rspec-hiera-puppet (>= 1.0.0)
   rspec-puppet (>= 0.1.5)

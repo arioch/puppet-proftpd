@@ -1,8 +1,7 @@
-# == Define: proftpd::mod
+# = Define: proftpd::mod
 #
 define proftpd::mod {
-  class {
-    "proftpd::mod::${name}":;
+  class { "proftpd::mod::${name}":;
   }
 }
 

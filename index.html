@@ -30,22 +30,27 @@
       <section>
         <h1>Puppet ProFTPd</h1>
 
-<h2>Tested on...</h2>
+<h2>Requirements</h2>
+
+<ul>
+<li><a href="https://github.com/ripienaar/puppet-concat">concat module</a></li>
+</ul><h2>Tested on...</h2>
 
 <ul>
 <li>Debian 6 (Squeeze)</li>
+<li>Debian 7 (Wheezy)</li>
 </ul><h2>Example usage</h2>
 
 <h3>Install ProFTPd</h3>
 
-<pre><code>node /ftp/ {
+<pre><code>node /^ftp/ {
   include proftpd
 }
 </code></pre>
 
 <h3>Override default settings</h3>
 
-<pre><code>node /ftp/ {
+<pre><code>node /^ftp/ {
   class { 'proftpd':
     use_ipv6          =&gt; 'on',
     identlookups      =&gt; 'on',
@@ -54,6 +59,34 @@
     timeoutstalled    =&gt; '600',
     timeoutidle       =&gt; '1200',
     listen_port       =&gt; '21',
+  }
+}
+</code></pre>
+
+<h3>Enable/disable modules</h3>
+
+<pre><code>node /^ftp/ {
+  class { 'proftpd':
+    load_modules =&gt; {
+      ban =&gt; {
+        enable =&gt; true,
+      },
+      exec =&gt; {
+        enable =&gt; false,
+      },
+      load =&gt; {
+        enable =&gt; true,
+      },
+      quotatab =&gt; {
+        enable =&gt; false,
+      },
+      sftp =&gt; {
+        enable =&gt; true,
+      },
+      tls =&gt; {
+        enable =&gt; false,
+      },
+    }
   }
 }
 </code></pre>

@@ -5,8 +5,8 @@ class proftpd::mod::ldap {
   require ::proftpd::config
 
   file { "${::proftpd::config_dir}/ldap.conf":
-    content => template("proftpd/${::osfamily}/ldap.conf.erb");
+    content => template("proftpd/${::osfamily}/ldap.conf.erb"),
+    notify  => Service[$::proftpd::serivce_name],
   }
-
 }
 

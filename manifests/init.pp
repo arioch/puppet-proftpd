@@ -21,11 +21,10 @@ class proftpd (
 ) inherits proftpd::params {
   class { 'proftpd::install': } ->
   class { 'proftpd::config': } ->
-  class { 'proftpd::service': } ->
-  Class [ 'proftpd' ]
+  class { 'proftpd::service': }
 
   if $::proftpd::load_modules {
-    proftpd::mod { $::proftpd::load_modules:; }
+    create_resources(proftpd::mod, $load_modules)
   }
 }
 

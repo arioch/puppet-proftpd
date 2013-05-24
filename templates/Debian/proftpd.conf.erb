@@ -1,7 +1,7 @@
 #
 # <%= scope.lookupvar('proftpd::config_dir') %>/proftpd.conf -- This is a basic ProFTPD configuration file.
 # To really apply changes reload proftpd after modifications.
-# 
+#
 
 # Includes DSO modules
 Include <%= scope.lookupvar('proftpd::config_dir') %>/modules.conf
@@ -29,7 +29,7 @@ ListOptions  "<%= scope.lookupvar('proftpd::listoptions') %>"
 
 DenyFilter <%= scope.lookupvar('proftpd::denyfilter') %>
 
-# Use this to jail all users in their homes 
+# Use this to jail all users in their homes
 DefaultRoot <%= scope.lookupvar('proftpd::defaultroot') %>
 
 # Users require a valid shell listed in /etc/shells to login.
@@ -99,21 +99,21 @@ Ratios <%= scope.lookupvar('proftpd::ratios') %>
 
 # Delay engine reduces impact of the so-called Timing Attack described in
 # http://security.lss.hr/index.php?page=details&ID=LSS-2004-10-02
-# It is on by default. 
+# It is on by default.
 <IfModule mod_delay.c>
 DelayEngine <%= scope.lookupvar('proftpd::delayengine') %>
 </IfModule>
 
 <IfModule mod_ctrls.c>
-ControlsEngine     <%= scope.lookupvar('proftpd::controlsengine') %> 
-ControlsMaxClients <%= scope.lookupvar('proftpd::controlsmaxclients') %> 
+ControlsEngine     <%= scope.lookupvar('proftpd::controlsengine') %>
+ControlsMaxClients <%= scope.lookupvar('proftpd::controlsmaxclients') %>
 ControlsLog        <%= scope.lookupvar('proftpd::log_dir') %>/controls.log
-ControlsInterval   <%= scope.lookupvar('proftpd::controlsinterval') %> 
-ControlsSocket     <%= scope.lookupvar('proftpd::controlssocket') %> 
+ControlsInterval   <%= scope.lookupvar('proftpd::controlsinterval') %>
+ControlsSocket     <%= scope.lookupvar('proftpd::controlssocket') %>
 </IfModule>
 
 <IfModule mod_ctrls_admin.c>
-AdminControlsEngine <%= scope.lookupvar('proftpd::admincontrolsengine') %> 
+AdminControlsEngine <%= scope.lookupvar('proftpd::admincontrolsengine') %>
 </IfModule>
 
 #
@@ -142,24 +142,24 @@ AdminControlsEngine <%= scope.lookupvar('proftpd::admincontrolsengine') %>
 #   # Cosmetic changes, all files belongs to ftp user
 #   DirFakeUser on ftp
 #   DirFakeGroup on ftp
-# 
+#
 #   RequireValidShell   off
-# 
+#
 #   # Limit the maximum number of anonymous logins
 #   MaxClients      10
-# 
+#
 #   # We want 'welcome.msg' displayed at login, and '.message' displayed
 #   # in each newly chdired directory.
 #   DisplayLogin      welcome.msg
 #   DisplayChdir    .message
-# 
+#
 #   # Limit WRITE everywhere in the anonymous chroot
 #   <Directory *>
 #     <Limit WRITE>
 #       DenyAll
 #     </Limit>
 #   </Directory>
-# 
+#
 #   # Uncomment this if you're brave.
 #   # <Directory incoming>
 #   #   # Umask 022 is a good standard umask to prevent new files and dirs
@@ -172,5 +172,6 @@ AdminControlsEngine <%= scope.lookupvar('proftpd::admincontrolsengine') %>
 #   #            AllowAll
 #   #            </Limit>
 #   # </Directory>
-# 
+#
 # </Anonymous>
+

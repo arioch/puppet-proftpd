@@ -33,30 +33,74 @@ class proftpd::params {
   $controlssocket      = '/var/run/proftpd/proftpd.sock'
   $admincontrolsengine = 'off'
 
-  $load_modules = [
-    'ban',
-    'ctrls_admin',
-    'dynmasq',
-    'exec',
-    'facl',
-    'load',
-    'quotatab',
-    'quotatab_file',
-    'quotatab_radius',
-    'radius',
-    'ratio',
-    'rewrite',
-    'sftp',
-    'sftp_pam',
-    'shaper',
-    'site_misc',
-    'tls',
-    'unique_id',
-    'wrap',
-    'wrap2',
-    'wrap2_file',
-    'ifsession'
-  ]
+  $load_modules = {
+    ban => {
+      enable => true,
+    },
+    ctrls_admin => {
+      enable => true,
+    },
+    dynmasq => {
+      enable => true,
+    },
+    exec => {
+      enable => true,
+    },
+    facl => {
+      enable => true,
+    },
+    load => {
+      enable => true,
+    },
+    quotatab => {
+      enable => true,
+    },
+    quotatab_file => {
+      enable => true,
+    },
+    quotatab_radius => {
+      enable => true,
+    },
+    radius => {
+      enable => true,
+    },
+    ratio => {
+      enable => true,
+    },
+    rewrite => {
+      enable => true,
+    },
+    sftp => {
+      enable => true,
+    },
+    sftp_pam => {
+      enable => true,
+    },
+    shaper => {
+      enable => true,
+    },
+    site_misc => {
+      enable => true,
+    },
+    tls => {
+      enable => true,
+    },
+    unique_id => {
+      enable => true,
+    },
+    wrap => {
+      enable => true,
+    },
+    wrap2 => {
+      enable => true,
+    },
+    wrap2_file => {
+      enable => true,
+    },
+    ifsession => {
+      enable => true,
+    },
+  }
 
   case $::operatingsystem {
     'RedHat', 'CentOS': {

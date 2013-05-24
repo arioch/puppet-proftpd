@@ -21,7 +21,7 @@ ModuleControlsACLs lsmod allow user *
 # Install proftpd-mod-ldap to use this
 #LoadModule mod_ldap.c
 
-# 'SQLBackend mysql' or 'SQLBackend postgres' (or any other valid backend) directives 
+# 'SQLBackend mysql' or 'SQLBackend postgres' (or any other valid backend) directives
 # are required to have SQL authorization working. You can also comment out the
 # unused module here, in alternative.
 
@@ -29,7 +29,7 @@ ModuleControlsACLs lsmod allow user *
 # mod_sql.c module to use this.
 #LoadModule mod_sql_mysql.c
 
-# Install proftpd-mod-pgsql and decomment the previous 
+# Install proftpd-mod-pgsql and decomment the previous
 # mod_sql.c module to use this.
 #LoadModule mod_sql_postgres.c
 
@@ -41,27 +41,24 @@ ModuleControlsACLs lsmod allow user *
 # mod_sql.c module to use this
 #LoadModule mod_sql_odbc.c
 
-# Install one of the previous SQL backends and decomment 
+# Install one of the previous SQL backends and decomment
 # the previous mod_sql.c module to use this
 #LoadModule mod_sql_passwd.c
 
 # Install proftpd-mod-ldap to use this
 #LoadModule mod_quotatab_ldap.c
 
-# Install one of the previous SQL backends and decomment 
+# Install one of the previous SQL backends and decomment
 # the previous mod_sql.c module to use this
 #LoadModule mod_quotatab_sql.c
 
-# Install one of the previous SQL backends and decomment 
+# Install one of the previous SQL backends and decomment
 # the previous mod_sql.c module to use this
 #LoadModule mod_wrap2_sql.c
 
-# Install one of the previous SQL backends and decomment 
+# Install one of the previous SQL backends and decomment
 # the previous mod_sql.c module to use this
 #LoadModule mod_sftp_sql.c
 
 # keep the mod_ifsession.c module the last one
-
-<% load_modules.each do |mod| %>LoadModule mod_<%= mod %>.c
-<% end %>
 

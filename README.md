@@ -37,6 +37,8 @@
 
 ### Enable/disable modules
 
+Add modules to the node manifest:
+
     node /^ftp/ {
       class { 'proftpd':
         load_modules => {
@@ -61,4 +63,24 @@
         }
       }
     }
+
+A much more elegant approach when using large hashes would be to use Puppet's [automatic parameter lookup](http://docs.puppetlabs.com/hiera/1/puppet.html#automatic-parameter-lookup). <br>
+Be aware that this is only possible when using Puppet => 3.0.0.
+
+Your Hiera yaml file should look like this:
+
+    ---
+    proftpd::load_modules:
+      ban:
+        enable: true
+      exec:
+        enable: false
+      load:
+        enable: true
+      quotatab:
+        enable: false
+      sftp:
+        enable: true
+      tls:
+        enable: false
 

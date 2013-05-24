@@ -30,14 +30,14 @@ class proftpd::config {
     group => $::proftpd::config_group,
   }
 
-  concat::fragment { "proftp_config_header":
+  concat::fragment { 'proftp_config_header':
     ensure  => present,
     target  => "${::proftpd::config_dir}/proftpd.conf",
     content => template("proftpd/${::osfamily}/proftpd.conf.erb"),
     order   => '01',
   }
 
-  concat::fragment { "proftp_modules_header":
+  concat::fragment { 'proftp_modules_header':
     ensure  => present,
     target  => "${::proftpd::config_dir}/modules.conf",
     content => template("proftpd/${::osfamily}/modules.conf.erb"),

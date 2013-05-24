@@ -64,7 +64,6 @@ class proftpd (
   $daemon_user       = $::proftpd::params::daemon_user,
   $load_modules      = $::proftpd::params::load_modules,
   $log_dir           = $::proftpd::params::log_dir,
-  $modules_enabled   = $::proftpd::params::modules_enabled,
   $pid_file          = $::proftpd::params::pid_file,
   $pkg_ensure        = $::proftpd::params::pkg_ensure,
   $pkg_list          = $::proftpd::params::pkg_list,

@@ -3,7 +3,7 @@
 ## Requirements
 
 * [concat module](https://github.com/ripienaar/puppet-concat)
-
+* Puppet 2.6.x only: [create_resources](https://github.com/puppetlabs/puppetlabs-create_resources)
 
 ## Tested on...
 

@@ -8,6 +8,7 @@ class proftpd (
   $config_user       = $::proftpd::params::config_user,
   $daemon_group      = $::proftpd::params::daemon_group,
   $daemon_user       = $::proftpd::params::daemon_user,
+  $load_modules      = $::proftpd::params::load_modules,
   $log_dir           = $::proftpd::params::log_dir,
   $modules_enabled   = $::proftpd::params::modules_enabled,
   $pid_file          = $::proftpd::params::pid_file,
@@ -18,7 +19,6 @@ class proftpd (
   $service_hasstatus = $::proftpd::params::service_hasstatus,
   $service_name      = $::proftpd::params::service_name,
 ) inherits proftpd::params {
-
   include proftpd::install
   include proftpd::config
   include proftpd::service

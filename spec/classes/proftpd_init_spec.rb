@@ -79,13 +79,28 @@ describe 'proftpd', :type => :class do
     it { should contain_concat__fragment('proftp_config_header').with_content(/User.*_VALUE_$/) }
   end
 
-  # FIXME:
-  #context 'on Debian with parameter: load_modules' do
-  #  let (:facts) { debian_facts }
-  #  let (:params) { { :load_modules => '_VALUE_' } }
-  #
-  #  it { should contain_('').with_ensure('_VALUE_') }
-  #end
+  context 'on Debian with parameter: load_modules' do
+    let (:facts) { debian_facts }
+    let (:params) {
+      {
+        :load_modules => {
+          '_VALUE_1_' => {
+            'enable' => '_VALUE_1_'
+          },
+          '_VALUE_2_' => {
+            'enable' => '_VALUE_2_'
+          },
+          '_VALUE_3_' => {
+            'enable' => '_VALUE_3_'
+          }
+        }
+      }
+    }
+
+    it { should create_proftpd__mod('_VALUE_1_').with_enable('_VALUE_1_') }
+    it { should create_proftpd__mod('_VALUE_2_').with_enable('_VALUE_2_') }
+    it { should create_proftpd__mod('_VALUE_3_').with_enable('_VALUE_3_') }
+  end
 
   context 'on Debian with parameter: log_dir' do
     let (:facts) { debian_facts }

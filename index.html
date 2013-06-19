@@ -28,29 +28,40 @@
         </ul>
       </header>
       <section>
-        <h1>Puppet ProFTPd</h1>
+        <h1>
+<a name="puppet-proftpd" class="anchor" href="#puppet-proftpd"><span class="octicon octicon-link"></span></a>Puppet ProFTPd</h1>
 
-<h2>Requirements</h2>
+<h2>
+<a name="build-status" class="anchor" href="#build-status"><span class="octicon octicon-link"></span></a>Build status</h2>
+
+<p><a href="https://travis-ci.org/arioch/puppet-proftpd"><img src="https://travis-ci.org/arioch/puppet-proftpd.png?branch=master" alt="Build Status"></a></p>
+
+<h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
 
 <ul>
 <li><a href="https://github.com/ripienaar/puppet-concat">concat module</a></li>
 <li>Puppet 2.6.x only: <a href="https://github.com/puppetlabs/puppetlabs-create_resources">create_resources</a>
 </li>
-</ul><h2>Tested on...</h2>
+</ul><h2>
+<a name="tested-on" class="anchor" href="#tested-on"><span class="octicon octicon-link"></span></a>Tested on...</h2>
 
 <ul>
 <li>Debian 6 (Squeeze)</li>
 <li>Debian 7 (Wheezy)</li>
-</ul><h2>Example usage</h2>
+</ul><h2>
+<a name="example-usage" class="anchor" href="#example-usage"><span class="octicon octicon-link"></span></a>Example usage</h2>
 
-<h3>Install ProFTPd</h3>
+<h3>
+<a name="install-proftpd" class="anchor" href="#install-proftpd"><span class="octicon octicon-link"></span></a>Install ProFTPd</h3>
 
 <pre><code>node /^ftp/ {
   include proftpd
 }
 </code></pre>
 
-<h3>Override default settings</h3>
+<h3>
+<a name="override-default-settings" class="anchor" href="#override-default-settings"><span class="octicon octicon-link"></span></a>Override default settings</h3>
 
 <pre><code>node /^ftp/ {
   class { 'proftpd':
@@ -65,7 +76,8 @@
 }
 </code></pre>
 
-<h3>Enable/disable modules</h3>
+<h3>
+<a name="enabledisable-modules" class="anchor" href="#enabledisable-modules"><span class="octicon octicon-link"></span></a>Enable/disable modules</h3>
 
 <p>Add modules to the node manifest:</p>
 

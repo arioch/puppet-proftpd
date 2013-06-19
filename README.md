@@ -1,5 +1,9 @@
 # Puppet ProFTPd
 
+## Build status
+
+[![Build Status](https://travis-ci.org/arioch/puppet-proftpd.png?branch=master)](https://travis-ci.org/arioch/puppet-proftpd)
+
 ## Requirements
 
 * [concat module](https://github.com/ripienaar/puppet-concat)

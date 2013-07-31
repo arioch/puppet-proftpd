@@ -1,43 +1,43 @@
 #
-# <%= scope.lookupvar('proftpd::config_dir') %>/proftpd.conf -- This is a basic ProFTPD configuration file.
+# <%= @config_dir %>/proftpd.conf -- This is a basic ProFTPD configuration file.
 # To really apply changes reload proftpd after modifications.
 #
 
 # Includes DSO modules
-Include <%= scope.lookupvar('proftpd::config_dir') %>/modules.conf
+Include <%= @config_dir %>/modules.conf
 
 # Set off to disable IPv6 support which is annoying on IPv4 only boxes.
-UseIPv6 <%= scope.lookupvar('proftpd::use_ipv6') %>
+UseIPv6 <%= @use_ipv6 %>
 # If set on you can experience a longer connection delay in many cases.
-IdentLookups <%= scope.lookupvar('proftpd::identlookups') %>
+IdentLookups <%= @identlookups %>
 
-ServerName   "<%= scope.lookupvar('proftpd::servername') %>"
-ServerType   <%= scope.lookupvar('proftpd::servertype') %>
-DeferWelcome <%= scope.lookupvar('proftpd::deferwelcome') %>
+ServerName   "<%= @servername %>"
+ServerType   <%= @servertype %>
+DeferWelcome <%= @deferwelcome %>
 
-MultilineRFC2228 <%= scope.lookupvar('proftpd::multilinerfc2228') %>
-DefaultServer    <%= scope.lookupvar('proftpd::defaultserver') %>
-ShowSymlinks     <%= scope.lookupvar('proftpd::showsymlinks') %>
+MultilineRFC2228 <%= @multilinerfc2228 %>
+DefaultServer    <%= @defaultserver %>
+ShowSymlinks     <%= @showsymlinks %>
 
-TimeoutNoTransfer <%= scope.lookupvar('proftpd::timeoutnotransfer') %>
-TimeoutStalled    <%= scope.lookupvar('proftpd::timeoutstalled') %>
-TimeoutIdle       <%= scope.lookupvar('proftpd::timeoutidle') %>
+TimeoutNoTransfer <%= @timeoutnotransfer %>
+TimeoutStalled    <%= @timeoutstalled %>
+TimeoutIdle       <%= @timeoutidle %>
 
-DisplayLogin <%= scope.lookupvar('proftpd::displaylogin') %>
-DisplayChdir <%= scope.lookupvar('proftpd::displaychdir') %>
-ListOptions  "<%= scope.lookupvar('proftpd::listoptions') %>"
+DisplayLogin <%= @displaylogin %>
+DisplayChdir <%= @displaychdir %>
+ListOptions  "<%= @listoptions %>"
 
-DenyFilter <%= scope.lookupvar('proftpd::denyfilter') %>
+DenyFilter <%= @denyfilter %>
 
 # Use this to jail all users in their homes
-DefaultRoot <%= scope.lookupvar('proftpd::defaultroot') %>
+DefaultRoot <%= @defaultroot %>
 
 # Users require a valid shell listed in /etc/shells to login.
 # Use this directive to release that constrain.
-RequireValidShell <%= scope.lookupvar('proftpd::requirevalidshell') %>
+RequireValidShell <%= @requirevalidshell %>
 
 # Port 21 is the standard FTP port.
-Port <%= scope.lookupvar('proftpd::listen_port') %>
+Port <%= @listen_port %>
 
 # In some cases you have to specify passive ports range to by-pass
 # firewall limitations. Ephemeral ports can be used for that, but
@@ -61,20 +61,20 @@ Port <%= scope.lookupvar('proftpd::listen_port') %>
 # in standalone mode, in inetd mode you should use an inetd server
 # that allows you to limit maximum number of processes per service
 # (such as xinetd)
-MaxInstances <%= scope.lookupvar('proftpd::maxinstances') %>
+MaxInstances <%= @maxinstances %>
 
 # Set the user and group that the server normally runs at.
-User  <%= scope.lookupvar('proftpd::daemon_user') %>
-Group <%= scope.lookupvar('proftpd::daemon_group') %>
+User  <%= @daemon_user %>
+Group <%= @daemon_group %>
 
 # Umask 022 is a good standard umask to prevent new files and dirs
 # (second parm) from being group and world writable.
 Umask       022  022
 # Normally, we want files to be overwriteable.
-AllowOverwrite <%= scope.lookupvar('proftpd::allowoverwrite') %>
+AllowOverwrite <%= @allowoverwrite %>
 
 # Uncomment this if you are using NIS or LDAP via NSS to retrieve passwords:
-PersistentPasswd <%= scope.lookupvar('proftpd::persistentpasswd') %>
+PersistentPasswd <%= @persistentpasswd %>
 
 # This is required to use both PAM-based authentication and local passwords
 # AuthOrder     mod_auth_pam.c* mod_auth_unix.c
@@ -83,17 +83,17 @@ PersistentPasswd <%= scope.lookupvar('proftpd::persistentpasswd') %>
 # Uncomment this if you like to see progress and transfer rate with ftpwho
 # in downloads. That is not needed for uploads rates.
 #
-UseSendFile <%= scope.lookupvar('proftpd::usesendfile') %>
+UseSendFile <%= @usesendfile %>
 
-TransferLog <%= scope.lookupvar('proftpd::log_dir') %>/xferlog
-SystemLog   <%= scope.lookupvar('proftpd::log_dir') %>/proftpd.log
+TransferLog <%= @log_dir %>/xferlog
+SystemLog   <%= @log_dir %>/proftpd.log
 
 <IfModule mod_quotatab.c>
-QuotaEngine <%= scope.lookupvar('proftpd::quotaengine') %>
+QuotaEngine <%= @quotaengine %>
 </IfModule>
 
 <IfModule mod_ratio.c>
-Ratios <%= scope.lookupvar('proftpd::ratios') %>
+Ratios <%= @ratios %>
 </IfModule>
 
 
@@ -101,36 +101,36 @@ Ratios <%= scope.lookupvar('proftpd::ratios') %>
 # http://security.lss.hr/index.php?page=details&ID=LSS-2004-10-02
 # It is on by default.
 <IfModule mod_delay.c>
-DelayEngine <%= scope.lookupvar('proftpd::delayengine') %>
+DelayEngine <%= @delayengine %>
 </IfModule>
 
 <IfModule mod_ctrls.c>
-ControlsEngine     <%= scope.lookupvar('proftpd::controlsengine') %>
-ControlsMaxClients <%= scope.lookupvar('proftpd::controlsmaxclients') %>
-ControlsLog        <%= scope.lookupvar('proftpd::log_dir') %>/controls.log
-ControlsInterval   <%= scope.lookupvar('proftpd::controlsinterval') %>
-ControlsSocket     <%= scope.lookupvar('proftpd::controlssocket') %>
+ControlsEngine     <%= @controlsengine %>
+ControlsMaxClients <%= @controlsmaxclients %>
+ControlsLog        <%= @log_dir %>/controls.log
+ControlsInterval   <%= @controlsinterval %>
+ControlsSocket     <%= @controlssocket %>
 </IfModule>
 
 <IfModule mod_ctrls_admin.c>
-AdminControlsEngine <%= scope.lookupvar('proftpd::admincontrolsengine') %>
+AdminControlsEngine <%= @admincontrolsengine %>
 </IfModule>
 
 #
 # Alternative authentication frameworks
 #
-#Include <%= scope.lookupvar('proftpd::config_dir') %>/ldap.conf
-#Include <%= scope.lookupvar('proftpd::config_dir') %>/sql.conf
+#Include <%= @config_dir %>/ldap.conf
+#Include <%= @config_dir %>/sql.conf
 
 #
 # This is used for FTPS connections
 #
-#Include <%= scope.lookupvar('proftpd::config_dir') %>/tls.conf
+#Include <%= @config_dir %>/tls.conf
 
 #
 # Useful to keep VirtualHost/VirtualRoot directives separated
 #
-#Include <%= scope.lookupvar('proftpd::config_dir') %>/virtuals.conf
+#Include <%= @config_dir %>/virtuals.conf
 
 # A basic anonymous configuration, no upload directories.
 

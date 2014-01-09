@@ -2,18 +2,18 @@ require 'spec_helper'
 
 describe 'proftpd', :type => :class do
   let (:pre_condition) { '$concat_basedir = "/tmp"' }
-  let (:params) { { :config_dir => '_CONFIG_DIR_' } }
+  let (:params) { { :config_dir => '/etc/tmp/proftpd' } }
 
   context 'without parameters' do
     let (:facts) { debian_facts }
 
     it { should create_class('proftpd') }
-    it { should include_class('proftpd::install') }
-    it { should include_class('proftpd::config') }
-    it { should include_class('proftpd::service') }
+    it { should contain_class('proftpd::install') }
+    it { should contain_class('proftpd::config') }
+    it { should contain_class('proftpd::service') }
 
     it { should contain_package('proftpd-basic').with_ensure('present') }
-    it { should contain_file('_CONFIG_DIR_/virtuals.conf').with_ensure('present') }
+    it { should contain_file('/etc/tmp/proftpd/virtuals.conf').with_ensure('present') }
 
     it { should contain_service('proftpd').with(
         'ensure'     => 'running',
@@ -32,9 +32,9 @@ describe 'proftpd', :type => :class do
 
   context 'with parameter: config_dir' do
     let (:facts) { debian_facts }
-    let (:params) { { :config_dir => '_VALUE_' } }
+    let (:params) { { :config_dir => '/etc/config/dir' } }
 
-    it { should contain_file('_VALUE_').with_ensure('directory') }
+    it { should contain_file('/etc/config/dir').with_ensure('directory') }
   end
 
   context 'with parameter: config_dir_mode' do

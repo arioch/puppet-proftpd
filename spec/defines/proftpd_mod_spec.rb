@@ -16,7 +16,7 @@ describe 'proftpd::mod', :type => :define do
     let (:title) { 'sql_mysql' }
 
     it { should create_proftpd__mod('sql_mysql') }
-    it { should include_class('proftpd::mod::sql_mysql') }
+    it { should contain_class('proftpd::mod::sql_mysql') }
     it { should_not contain_concat__fragment('proftp_module_sql_mysql') }
   end
 end

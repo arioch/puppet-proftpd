@@ -3,7 +3,7 @@
 class proftpd::mod::tls ($enable = true) {
   file { "${::proftpd::config_dir}/tls.conf":
     content => template("proftpd/${::osfamily}/tls.conf.erb"),
-    notify  => Service[$::proftpd::serivce_name],
+    notify  => Service[$::proftpd::service_name],
   }
 
   # Include the config file in proftpd.conf
